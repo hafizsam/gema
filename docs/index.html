@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gema — teka budaya Malaysia</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Gema<span class="dot">.</span></h1>
+    <p class="tagline">Teka <em>noun</em> budaya Malaysia hari ini</p>
+    <div class="topbar-actions">
+      <button id="lang-toggle" class="chip" title="Tukar bahasa penerangan">EN</button>
+      <button id="help-btn" class="chip" title="Cara bermain">?</button>
+      <button id="stats-btn" class="chip" title="Statistik">📊</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="status" class="status" aria-live="polite"></section>
+
+    <form id="guess-form" autocomplete="off">
+      <input
+        id="guess-input"
+        type="text"
+        list="vocab-options"
+        placeholder="Taip nasi lemak, Langkawi, keris..."
+        aria-label="Teka perkataan"
+      >
+      <datalist id="vocab-options"></datalist>
+      <button type="submit">Teka</button>
+    </form>
+
+    <p id="input-hint" class="hint"></p>
+
+    <div class="board-head" id="board-head" hidden>
+      <span>#</span><span>Perkataan</span><span>Skor</span><span>Suhu</span>
+    </div>
+    <ol id="guess-list" class="guess-list"></ol>
+
+    <div id="reveal-card" class="reveal-card" hidden></div>
+
+    <button id="giveup-btn" class="link-btn" hidden>Serah kalah, tunjuk jawapan</button>
+  </main>
+
+  <dialog id="help-dialog">
+    <h2>Cara bermain</h2>
+    <ul>
+      <li>Setiap hari ada satu <strong>noun</strong> rahsia berkaitan budaya Malaysia.</li>
+      <li>Taip tekaan anda — hanya perkataan dalam senarai budaya kami boleh diterima, gunakan cadangan automatik.</li>
+      <li>Setiap tekaan diberi <strong>kedudukan (#rank)</strong> berbanding semua perkataan lain, berdasarkan campuran makna dan ciri-ciri yang dikongsi.</li>
+      <li>Kedudukan #1 = jawapan. Semakin kecil nombor, semakin "panas" tekaan anda.</li>
+      <li>🔥 Membara → Panas → Suam → 🧊 Sejuk</li>
+    </ul>
+    <button class="link-btn" data-close>Faham</button>
+  </dialog>
+
+  <dialog id="stats-dialog">
+    <h2>Statistik anda</h2>
+    <div class="stats-grid" id="stats-grid"></div>
+    <button class="link-btn" data-close>Tutup</button>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

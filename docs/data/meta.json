@@ -1,0 +1,1 @@
+{"version":1,"salt":"gema-v1","epoch":"2026-01-01","cycleLength":584,"heatTiers":[{"name":"Membara","max_rank_pct":0.005},{"name":"Panas","max_rank_pct":0.03},{"name":"Suam","max_rank_pct":0.12},{"name":"Sejuk","max_rank_pct":1.0}]}

@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+
+# Scored matrices regenerate deterministically from vectors.npy + config.json
+# (score.py, pure numpy, no model download) — cheap to rerun in CI, no need to track.
+data/build/scores.npy
+data/build/ranks.npy
+
+.DS_Store
+.claude/

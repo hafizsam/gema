@@ -1,0 +1,27 @@
+{
+  "weights": {
+    "embedding": 0.6,
+    "tags": 0.28,
+    "category": 0.08,
+    "region": 0.04
+  },
+  "csls_k": 8,
+  "heat_tiers": [
+    {
+      "name": "Membara",
+      "max_rank_pct": 0.005
+    },
+    {
+      "name": "Panas",
+      "max_rank_pct": 0.03
+    },
+    {
+      "name": "Suam",
+      "max_rank_pct": 0.12
+    },
+    {
+      "name": "Sejuk",
+      "max_rank_pct": 1.0
+    }
+  ]
+}

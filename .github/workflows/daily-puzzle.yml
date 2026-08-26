@@ -1,0 +1,45 @@
+name: Emit daily puzzle
+
+# Runs the scoring pipeline (pure numpy, no model download — vectors.npy is
+# committed) and commits any new puzzle files. Re-run manually after editing
+# lexicon/entries.json or pipeline/config.json to regenerate everything.
+
+on:
+  schedule:
+    - cron: "0 16 * * *" # 00:00 MYT (UTC+8)
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Days ahead to generate"
+        default: "3"
+
+permissions:
+  contents: write
+
+jobs:
+  emit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install numpy scikit-learn
+
+      - name: Validate lexicon
+        run: python pipeline/validate.py
+
+      - name: Score and emit puzzles
+        run: |
+          python pipeline/score.py
+          python pipeline/make_puzzle.py --days "${{ github.event.inputs.days || '3' }}"
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet || git commit -m "chore: emit daily puzzle"
+          git push

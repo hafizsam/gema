@@ -1,0 +1,278 @@
+:root {
+  --bg: #0f1416;
+  --panel: #171f22;
+  --panel-border: #263136;
+  --text: #eef4f2;
+  --muted: #8fa3a8;
+  --accent: #e7b64c;
+  --membara: #ff5a3d;
+  --panas: #ff9a3d;
+  --suam: #ffd23d;
+  --sejuk: #4d8fdb;
+  --ok: #52c98a;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.topbar {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px 16px 12px;
+  position: relative;
+  text-align: center;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+}
+
+.topbar h1 .dot { color: var(--accent); }
+
+.tagline {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.topbar-actions {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  display: flex;
+  gap: 6px;
+}
+
+.chip {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.chip:hover { border-color: var(--accent); }
+
+.status {
+  text-align: center;
+  min-height: 1.4em;
+  margin: 8px 0 16px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.status.error { color: var(--membara); }
+.status.ok { color: var(--ok); }
+
+#guess-form {
+  display: flex;
+  gap: 8px;
+}
+
+#guess-input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+#guess-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#guess-form button[type="submit"] {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #201a08;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#guess-form button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hint {
+  min-height: 1.2em;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 6px 2px 0;
+}
+
+.board-head {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr 4.2rem 5.5rem;
+  gap: 8px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  padding: 18px 12px 6px;
+}
+
+.guess-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.guess-row {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr 4.2rem 5.5rem;
+  align-items: center;
+  gap: 8px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  animation: pop 0.18s ease-out;
+}
+
+.guess-row.correct {
+  border-color: var(--ok);
+  background: linear-gradient(90deg, rgba(82, 201, 138, 0.15), transparent);
+}
+
+@keyframes pop {
+  from { transform: scale(0.97); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.guess-rank {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.guess-term {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.guess-score {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+.heat-badge {
+  justify-self: end;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.heat-membara { background: color-mix(in srgb, var(--membara) 25%, transparent); color: var(--membara); }
+.heat-panas   { background: color-mix(in srgb, var(--panas) 25%, transparent); color: var(--panas); }
+.heat-suam    { background: color-mix(in srgb, var(--suam) 22%, transparent); color: var(--suam); }
+.heat-sejuk   { background: color-mix(in srgb, var(--sejuk) 25%, transparent); color: var(--sejuk); }
+
+.reveal-card {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--accent);
+}
+
+.reveal-card h2 {
+  margin: 0 0 6px;
+  color: var(--accent);
+}
+
+.reveal-card .meta {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.reveal-card p { line-height: 1.5; }
+
+.share-btn {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #201a08;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.link-btn {
+  display: block;
+  margin: 20px auto 0;
+  background: none;
+  border: none;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+dialog {
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  max-width: 420px;
+  width: 90%;
+  padding: 20px;
+}
+
+dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
+
+dialog ul { padding-left: 20px; line-height: 1.6; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  text-align: center;
+  margin: 16px 0;
+}
+
+.stats-grid .num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stats-grid .label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
